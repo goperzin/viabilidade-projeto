@@ -151,6 +151,7 @@ Siga `SPRINT-001.md` e marque cada task como `[x]` ao concluir.
 | T-007 | CORS verificado e todos os endpoints testados — cabeçalhos, preflight OPTIONS, fluxo E2E (8 testes passando) |
 | T-008 | `index.html` estruturado — header com badge, seção upload, painel métricas, formulário predict, área resultado (21 testes passando) |
 | T-009 | `style.css` implementado — variáveis `:root`, layout mobile-first, `.card`, `.badge--viable/--inviable`, `.progress-bar`, `.metrics-panel`, `.btn--loading`, breakpoint 768px (21 testes passando) |
+| T-010 | `app.js` implementado — `API_BASE`, `checkStatus`, `renderMetrics`, `handleUpload`, `handlePredict`, `renderResult`, `showError`, `showLoading`, `resetLoading` (24 testes passando) |
 
 ### Pendentes (próxima execução)
 
@@ -174,3 +175,4 @@ Siga `SPRINT-001.md` e marque cada task como `[x]` ao concluir.
 - **`python -m uvicorn` em vez de `uvicorn` diretamente** — no Windows com Python em `AppData/Roaming`, o executável `uvicorn` não é adicionado ao PATH automaticamente. Usar `python -m uvicorn main:app --reload --port 8000` no diretório `backend/`.
 - **Testes de `index.html` em `frontend/test_index_html.py`** — como não há framework de testes JS no projeto, os testes do HTML foram escritos em Python usando `html.parser` nativo (sem dependências externas). Verificam presença de IDs, classes, atributo `hidden` e referências a `style.css` e `app.js`.
 - **Testes de `style.css` em `frontend/test_style_css.py`** — testes em Python usando `re` para verificar seletores, variáveis CSS e conformidade mobile-first (sem dependências externas).
+- **Testes de `app.js` em `frontend/test_app_js.py`** — testes em Python usando `re` para verificar declaração de funções (incluindo `async function` e `const f = async (`), constante `API_BASE`, uso de `fetch`, ausência de frameworks e inicialização via `checkStatus()` no final do arquivo.

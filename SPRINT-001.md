@@ -76,7 +76,7 @@ A sprint está completa quando:
   - Estados de loading (`.btn--loading`)
   - Responsivo para tablet (min-width: 768px)
 
-- [ ] **T-010** — Implementar `app.js`
+- [x] **T-010** — Implementar `app.js`
   - Constante `API_BASE = 'http://localhost:8000'`
   - `checkStatus()` — chama `GET /status`, mostra/oculta seções conforme resultado
   - `renderMetrics(metrics)` — preenche painel de métricas dinamicamente
