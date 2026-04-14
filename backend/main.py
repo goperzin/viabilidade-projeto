@@ -1,5 +1,6 @@
 """FastAPI app — rotas, CORS e validacao de entrada para a API de viabilidade."""
 
+import io
 import os
 
 import pandas as pd
@@ -47,10 +48,9 @@ async def train(file: UploadFile = File(...)) -> TrainResponse:
 
     try:
         contents = await file.read()
-        import io
         df = pd.read_csv(io.BytesIO(contents))
     except Exception:
-        raise HTTPException(status_code=422, detail="Erro interno ao processar a requisicao.")
+        raise HTTPException(status_code=500, detail="Erro interno ao processar a requisicao.")
 
     missing = ml.REQUIRED_COLUMNS - set(df.columns)
     if missing:

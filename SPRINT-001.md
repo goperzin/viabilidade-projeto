@@ -42,7 +42,7 @@ A sprint está completa quando:
 - [x] **T-004** — Implementar `GET /status` em `main.py`
   - Retorna `model_trained: true/false` + métricas (ou null)
 
-- [ ] **T-005** — Implementar `POST /train` em `main.py`
+- [x] **T-005** — Implementar `POST /train` em `main.py`
   - Recebe `multipart/form-data` com campo `file`
   - Valida extensão `.csv`
   - Valida colunas obrigatórias
