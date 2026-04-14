@@ -26,7 +26,7 @@ A sprint está completa quando:
 
 ### ⚙️ Backend
 
-- [ ] **T-002** — Implementar `model.py`
+- [x] **T-002** — Implementar `model.py`
   - Constantes de path (`MODEL_PATH`, `SCALER_PATH`, `METRICS_PATH`)
   - `model_exists() -> bool`
   - `train_model(df: pd.DataFrame) -> dict` — treina, salva e retorna métricas
