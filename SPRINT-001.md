@@ -66,7 +66,7 @@ A sprint está completa quando:
   - Formulário de previsão (investment, expected_return, impact_score)
   - Área de resultado da previsão
 
-- [ ] **T-009** — Implementar `style.css`
+- [x] **T-009** — Implementar `style.css`
   - Variáveis CSS (`:root`) para cores e espaçamentos
   - Layout centralizado com max-width
   - Card component (`.card`)

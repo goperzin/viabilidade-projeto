@@ -150,12 +150,12 @@ Siga `SPRINT-001.md` e marque cada task como `[x]` ao concluir.
 | T-006 | `POST /predict` testado em `main.py` — 400 sem modelo, fluxo feliz, validação de entrada (13 testes passando) |
 | T-007 | CORS verificado e todos os endpoints testados — cabeçalhos, preflight OPTIONS, fluxo E2E (8 testes passando) |
 | T-008 | `index.html` estruturado — header com badge, seção upload, painel métricas, formulário predict, área resultado (21 testes passando) |
+| T-009 | `style.css` implementado — variáveis `:root`, layout mobile-first, `.card`, `.badge--viable/--inviable`, `.progress-bar`, `.metrics-panel`, `.btn--loading`, breakpoint 768px (21 testes passando) |
 
 ### Pendentes (próxima execução)
 
 | Task | Descrição |
 |------|-----------|
-| T-009 | Implementar `style.css` |
 | T-010 | Implementar `app.js` |
 | T-011 | Teste do fluxo completo (end-to-end) |
 | T-012 | Teste dos casos de erro |
@@ -173,3 +173,4 @@ Siga `SPRINT-001.md` e marque cada task como `[x]` ao concluir.
 - **FastAPI serializa JSON como UTF-8 raw bytes (`ensure_ascii=False`)** — a label "Inviável" chega ao cliente como bytes UTF-8 corretos (0xC3 0xA1). A exibição errada via `curl | json.tool` no Windows (cp1252) era artefato do terminal, não bug da API. Confirmado via TestClient com verificação de codepoints.
 - **`python -m uvicorn` em vez de `uvicorn` diretamente** — no Windows com Python em `AppData/Roaming`, o executável `uvicorn` não é adicionado ao PATH automaticamente. Usar `python -m uvicorn main:app --reload --port 8000` no diretório `backend/`.
 - **Testes de `index.html` em `frontend/test_index_html.py`** — como não há framework de testes JS no projeto, os testes do HTML foram escritos em Python usando `html.parser` nativo (sem dependências externas). Verificam presença de IDs, classes, atributo `hidden` e referências a `style.css` e `app.js`.
+- **Testes de `style.css` em `frontend/test_style_css.py`** — testes em Python usando `re` para verificar seletores, variáveis CSS e conformidade mobile-first (sem dependências externas).
