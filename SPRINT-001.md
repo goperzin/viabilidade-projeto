@@ -48,7 +48,7 @@ A sprint está completa quando:
   - Valida colunas obrigatórias
   - Chama `train_model()` e retorna `TrainResponse`
 
-- [ ] **T-006** — Implementar `POST /predict` em `main.py`
+- [x] **T-006** — Implementar `POST /predict` em `main.py`
   - Valida que modelo existe (400 se não)
   - Chama `predict()` e retorna `PredictionResponse`
 
