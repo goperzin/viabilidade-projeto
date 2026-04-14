@@ -52,7 +52,7 @@ A sprint está completa quando:
   - Valida que modelo existe (400 se não)
   - Chama `predict()` e retorna `PredictionResponse`
 
-- [ ] **T-007** — Configurar CORS e rodar com Uvicorn
+- [x] **T-007** — Configurar CORS e rodar com Uvicorn
   - Testar todos os endpoints com curl ou Postman
 
 ---
