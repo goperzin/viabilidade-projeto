@@ -148,12 +148,12 @@ Siga `SPRINT-001.md` e marque cada task como `[x]` ao concluir.
 | T-004 | `GET /status` implementado em `main.py` com CORS e estrutura base do app (6 testes passando) |
 | T-005 | `POST /train` testado e corrigido em `main.py` — validação de extensão, colunas e treino (10 testes passando) |
 | T-006 | `POST /predict` testado em `main.py` — 400 sem modelo, fluxo feliz, validação de entrada (13 testes passando) |
+| T-007 | CORS verificado e todos os endpoints testados — cabeçalhos, preflight OPTIONS, fluxo E2E (8 testes passando) |
 
 ### Pendentes (próxima execução)
 
 | Task | Descrição |
 |------|-----------|
-| T-007 | Configurar CORS e testar todos os endpoints |
 | T-008 | Estruturar `index.html` |
 | T-009 | Implementar `style.css` |
 | T-010 | Implementar `app.js` |
@@ -170,3 +170,5 @@ Siga `SPRINT-001.md` e marque cada task como `[x]` ao concluir.
 - **`httpx` adicionado como dependência de teste** — `FastAPI.TestClient` exige `httpx` (não declarado no `requirements.txt` original). Instalado separadamente; pode ser adicionado ao `requirements.txt` como `httpx` em dev-dependencies se o projeto crescer.
 - **Erros de leitura de CSV usam HTTP 500, não 422** — falha ao parsear o arquivo (CSV malformado, binário etc.) é erro interno, não de validação do cliente. Erros de schema (extensão, colunas ausentes) continuam como 422.
 - **`import io` movido para o topo do módulo** — estava dentro do handler `async def train`; corrigido para seguir convenção PEP 8 de imports no topo do arquivo.
+- **FastAPI serializa JSON como UTF-8 raw bytes (`ensure_ascii=False`)** — a label "Inviável" chega ao cliente como bytes UTF-8 corretos (0xC3 0xA1). A exibição errada via `curl | json.tool` no Windows (cp1252) era artefato do terminal, não bug da API. Confirmado via TestClient com verificação de codepoints.
+- **`python -m uvicorn` em vez de `uvicorn` diretamente** — no Windows com Python em `AppData/Roaming`, o executável `uvicorn` não é adicionado ao PATH automaticamente. Usar `python -m uvicorn main:app --reload --port 8000` no diretório `backend/`.
