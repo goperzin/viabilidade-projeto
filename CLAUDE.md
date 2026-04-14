@@ -147,12 +147,12 @@ Siga `SPRINT-001.md` e marque cada task como `[x]` ao concluir.
 | T-003 | `schemas.py` implementado — `ProjectInput`, `PredictionResponse`, `TrainResponse`, `StatusResponse` (13 testes passando) |
 | T-004 | `GET /status` implementado em `main.py` com CORS e estrutura base do app (6 testes passando) |
 | T-005 | `POST /train` testado e corrigido em `main.py` — validação de extensão, colunas e treino (10 testes passando) |
+| T-006 | `POST /predict` testado em `main.py` — 400 sem modelo, fluxo feliz, validação de entrada (13 testes passando) |
 
 ### Pendentes (próxima execução)
 
 | Task | Descrição |
 |------|-----------|
-| T-006 | Implementar `POST /predict` em `main.py` |
 | T-007 | Configurar CORS e testar todos os endpoints |
 | T-008 | Estruturar `index.html` |
 | T-009 | Implementar `style.css` |
