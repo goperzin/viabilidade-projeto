@@ -39,7 +39,7 @@ A sprint está completa quando:
   - `TrainResponse` (success, message, metrics)
   - `StatusResponse` (model_trained, metrics)
 
-- [ ] **T-004** — Implementar `GET /status` em `main.py`
+- [x] **T-004** — Implementar `GET /status` em `main.py`
   - Retorna `model_trained: true/false` + métricas (ou null)
 
 - [ ] **T-005** — Implementar `POST /train` em `main.py`
