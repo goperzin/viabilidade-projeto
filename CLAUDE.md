@@ -146,12 +146,12 @@ Siga `SPRINT-001.md` e marque cada task como `[x]` ao concluir.
 | T-002 | `model.py` implementado — `model_exists`, `train_model`, `predict`, `get_metrics` (9 testes passando) |
 | T-003 | `schemas.py` implementado — `ProjectInput`, `PredictionResponse`, `TrainResponse`, `StatusResponse` (13 testes passando) |
 | T-004 | `GET /status` implementado em `main.py` com CORS e estrutura base do app (6 testes passando) |
+| T-005 | `POST /train` testado e corrigido em `main.py` — validação de extensão, colunas e treino (10 testes passando) |
 
 ### Pendentes (próxima execução)
 
 | Task | Descrição |
 |------|-----------|
-| T-005 | Implementar `POST /train` em `main.py` |
 | T-006 | Implementar `POST /predict` em `main.py` |
 | T-007 | Configurar CORS e testar todos os endpoints |
 | T-008 | Estruturar `index.html` |
@@ -168,3 +168,5 @@ Siga `SPRINT-001.md` e marque cada task como `[x]` ao concluir.
 - **`metrics: dict | None` com `default=None`** — `TrainResponse` e `StatusResponse` usam `Field(None, ...)` para tornar `metrics` opcional por padrão, evitando que o caller precise passar `metrics=None` explicitamente.
 - **`main.py` criado completo na T-004** — o SPEC divide as rotas em T-004/T-005/T-006, mas como `main.py` é um único arquivo de app, foi criado já com os três endpoints para evitar estados intermediários inválidos. Os testes de T-004 cobrem apenas `GET /status`; os de T-005 e T-006 cobrirão seus respectivos endpoints.
 - **`httpx` adicionado como dependência de teste** — `FastAPI.TestClient` exige `httpx` (não declarado no `requirements.txt` original). Instalado separadamente; pode ser adicionado ao `requirements.txt` como `httpx` em dev-dependencies se o projeto crescer.
+- **Erros de leitura de CSV usam HTTP 500, não 422** — falha ao parsear o arquivo (CSV malformado, binário etc.) é erro interno, não de validação do cliente. Erros de schema (extensão, colunas ausentes) continuam como 422.
+- **`import io` movido para o topo do módulo** — estava dentro do handler `async def train`; corrigido para seguir convenção PEP 8 de imports no topo do arquivo.
