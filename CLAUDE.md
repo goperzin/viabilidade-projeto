@@ -152,6 +152,7 @@ Siga `SPRINT-001.md` e marque cada task como `[x]` ao concluir.
 | T-008 | `index.html` estruturado — header com badge, seção upload, painel métricas, formulário predict, área resultado (21 testes passando) |
 | T-009 | `style.css` implementado — variáveis `:root`, layout mobile-first, `.card`, `.badge--viable/--inviable`, `.progress-bar`, `.metrics-panel`, `.btn--loading`, breakpoint 768px (21 testes passando) |
 | T-010 | `app.js` implementado — `API_BASE`, `checkStatus`, `renderMetrics`, `handleUpload`, `handlePredict`, `renderResult`, `showError`, `showLoading`, `resetLoading` (24 testes passando) |
+| T-011 | Fluxo completo testado — `projects_data.csv` (100 linhas) criado; 7 passos E2E validando status→treino→status→predict→label→probabilidade→CSV (7 testes passando) |
 
 ### Pendentes (próxima execução)
 
@@ -176,3 +177,5 @@ Siga `SPRINT-001.md` e marque cada task como `[x]` ao concluir.
 - **Testes de `index.html` em `frontend/test_index_html.py`** — como não há framework de testes JS no projeto, os testes do HTML foram escritos em Python usando `html.parser` nativo (sem dependências externas). Verificam presença de IDs, classes, atributo `hidden` e referências a `style.css` e `app.js`.
 - **Testes de `style.css` em `frontend/test_style_css.py`** — testes em Python usando `re` para verificar seletores, variáveis CSS e conformidade mobile-first (sem dependências externas).
 - **Testes de `app.js` em `frontend/test_app_js.py`** — testes em Python usando `re` para verificar declaração de funções (incluindo `async function` e `const f = async (`), constante `API_BASE`, uso de `fetch`, ausência de frameworks e inicialização via `checkStatus()` no final do arquivo.
+- **`projects_data.csv` na raiz** — CSV de exemplo com 100 linhas gerado via NumPy/pandas (seed 42), com 34 viáveis e 66 inviáveis. Usado em T-011 e disponível para uso manual.
+- **`test_e2e_flow.py` simula o fluxo do frontend** — como T-011 é manual (browser), o teste automatizado replica exatamente a sequência de chamadas de `app.js` (checkStatus → handleUpload → checkStatus → handlePredict) e valida a estrutura das respostas que `renderMetrics` e `renderResult` consomem.

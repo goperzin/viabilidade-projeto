@@ -89,7 +89,7 @@ A sprint está completa quando:
 
 ### ✅ Testes Manuais
 
-- [ ] **T-011** — Teste completo do fluxo feliz
+- [x] **T-011** — Teste completo do fluxo feliz
   1. Abrir `index.html` no browser
   2. Fazer upload de `projects_data.csv` válido
   3. Confirmar que métricas aparecem
