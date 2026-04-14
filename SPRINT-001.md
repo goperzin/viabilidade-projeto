@@ -33,7 +33,7 @@ A sprint está completa quando:
   - `predict(project: dict) -> dict` — carrega modelo, normaliza, retorna viabilidade + probabilidade
   - `get_metrics() -> dict | None`
 
-- [ ] **T-003** — Implementar `schemas.py`
+- [x] **T-003** — Implementar `schemas.py`
   - `ProjectInput` (investment, expected_return, impact_score)
   - `PredictionResponse` (viability, viability_label, probability)
   - `TrainResponse` (success, message, metrics)
