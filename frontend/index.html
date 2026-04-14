@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Viabilidade de Projetos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">Classificador de Viabilidade</h1>
+      <div id="status-badge" class="badge badge--loading">Verificando modelo...</div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ===== MENSAGEM DE ERRO GLOBAL ===== -->
+    <div id="error-banner" class="error-banner" hidden>
+      <span id="error-message"></span>
+    </div>
+
+    <!-- ===== SEÇÃO: UPLOAD DE CSV ===== -->
+    <section id="upload-section" class="card" hidden>
+      <h2 class="card__title">Treinar Modelo</h2>
+      <p class="card__description">
+        Faça upload de um arquivo <code>.csv</code> com as colunas
+        <code>investment</code>, <code>expected_return</code>,
+        <code>impact_score</code> e <code>viability</code> para treinar o modelo.
+      </p>
+
+      <form id="upload-form" class="upload-form">
+        <label for="csv-file" class="upload-label">
+          <span class="upload-label__text">Selecionar arquivo CSV</span>
+          <input
+            id="csv-file"
+            type="file"
+            accept=".csv"
+            class="upload-input"
+            required
+          />
+        </label>
+
+        <p id="file-name" class="file-name" hidden></p>
+
+        <button id="upload-btn" type="submit" class="btn btn--primary">
+          Treinar modelo
+        </button>
+      </form>
+
+      <div id="upload-feedback" class="feedback" hidden></div>
+    </section>
+
+    <!-- ===== SEÇÃO: MÉTRICAS ===== -->
+    <section id="metrics-section" class="card metrics-panel" hidden>
+      <h2 class="card__title">Métricas do Modelo</h2>
+      <div id="metrics-grid" class="metrics-grid">
+        <!-- Preenchido dinamicamente por renderMetrics() -->
+      </div>
+    </section>
+
+    <!-- ===== SEÇÃO: FORMULÁRIO DE PREVISÃO ===== -->
+    <section id="predict-section" class="card" hidden>
+      <h2 class="card__title">Analisar Projeto</h2>
+      <p class="card__description">
+        Preencha os dados do projeto para obter a previsão de viabilidade.
+      </p>
+
+      <form id="predict-form" class="predict-form">
+        <div class="form-group">
+          <label for="investment" class="form-label">Investimento (R$)</label>
+          <input
+            id="investment"
+            type="number"
+            name="investment"
+            class="form-input"
+            placeholder="Ex.: 40000"
+            min="0"
+            step="any"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="expected_return" class="form-label">Retorno Esperado (R$)</label>
+          <input
+            id="expected_return"
+            type="number"
+            name="expected_return"
+            class="form-input"
+            placeholder="Ex.: 60000"
+            min="0"
+            step="any"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="impact_score" class="form-label">Pontuação de Impacto (0–10)</label>
+          <input
+            id="impact_score"
+            type="number"
+            name="impact_score"
+            class="form-input"
+            placeholder="Ex.: 6"
+            min="0"
+            max="10"
+            step="any"
+            required
+          />
+        </div>
+
+        <button id="predict-btn" type="submit" class="btn btn--primary">
+          Analisar viabilidade
+        </button>
+      </form>
+    </section>
+
+    <!-- ===== SEÇÃO: RESULTADO DA PREVISÃO ===== -->
+    <section id="result-section" class="card" hidden>
+      <h2 class="card__title">Resultado</h2>
+
+      <div id="result-content">
+        <!-- Preenchido dinamicamente por renderResult() -->
+        <div class="result-badge-wrapper">
+          <span id="result-badge" class="badge"></span>
+        </div>
+
+        <div class="result-probability">
+          <span class="result-probability__label">Probabilidade de viabilidade</span>
+          <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+            <div id="progress-fill" class="progress-bar__fill"></div>
+          </div>
+          <span id="probability-value" class="result-probability__value"></span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Viabilidade de Projetos &mdash; Regressão Logística com scikit-learn</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

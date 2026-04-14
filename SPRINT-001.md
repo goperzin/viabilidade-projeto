@@ -59,7 +59,7 @@ A sprint está completa quando:
 
 ### 🎨 Frontend
 
-- [ ] **T-008** — Estruturar `index.html`
+- [x] **T-008** — Estruturar `index.html`
   - Seção de status do modelo (header com badge)
   - Seção de upload de CSV (visível apenas se modelo não treinado)
   - Painel de métricas (visível após treino)
