@@ -96,7 +96,7 @@ A sprint está completa quando:
   4. Preencher formulário com `investment: 40000`, `expected_return: 60000`, `impact_score: 6`
   5. Confirmar resultado com probabilidade
 
-- [ ] **T-012** — Teste de casos de erro
+- [x] **T-012** — Teste de casos de erro
   - Upload de arquivo não-CSV → mensagem de erro
   - Upload de CSV sem coluna `viability` → mensagem de erro
   - Campos do formulário em branco → validação client-side

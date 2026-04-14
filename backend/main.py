@@ -44,13 +44,13 @@ def get_status() -> StatusResponse:
 async def train(file: UploadFile = File(...)) -> TrainResponse:
     """Recebe um CSV, valida e treina o modelo de regressao logistica."""
     if not file.filename.endswith(".csv"):
-        raise HTTPException(status_code=422, detail="Apenas arquivos .csv sao aceitos.")
+        raise HTTPException(status_code=422, detail="Apenas arquivos .csv são aceitos.")
 
     try:
         contents = await file.read()
         df = pd.read_csv(io.BytesIO(contents))
     except Exception:
-        raise HTTPException(status_code=500, detail="Erro interno ao processar a requisicao.")
+        raise HTTPException(status_code=500, detail="Erro interno ao processar a requisição.")
 
     missing = ml.REQUIRED_COLUMNS - set(df.columns)
     if missing:
@@ -62,7 +62,7 @@ async def train(file: UploadFile = File(...)) -> TrainResponse:
     try:
         metrics = ml.train_model(df)
     except Exception:
-        raise HTTPException(status_code=500, detail="Erro interno ao processar a requisicao.")
+        raise HTTPException(status_code=500, detail="Erro interno ao processar a requisição.")
 
     return TrainResponse(
         success=True,
@@ -77,12 +77,12 @@ def predict(project: ProjectInput) -> PredictionResponse:
     if not ml.model_exists():
         raise HTTPException(
             status_code=400,
-            detail="Modelo ainda nao foi treinado. Faca upload de um CSV primeiro.",
+            detail="Modelo ainda não foi treinado. Faça upload de um CSV primeiro.",
         )
 
     try:
         result = ml.predict(project.model_dump())
     except Exception:
-        raise HTTPException(status_code=500, detail="Erro interno ao processar a requisicao.")
+        raise HTTPException(status_code=500, detail="Erro interno ao processar a requisição.")
 
     return PredictionResponse(**result)
