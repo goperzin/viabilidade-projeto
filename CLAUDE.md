@@ -145,12 +145,12 @@ Siga `SPRINT-001.md` e marque cada task como `[x]` ao concluir.
 | T-001 | Estrutura de pastas criada conforme SPEC.md |
 | T-002 | `model.py` implementado — `model_exists`, `train_model`, `predict`, `get_metrics` (9 testes passando) |
 | T-003 | `schemas.py` implementado — `ProjectInput`, `PredictionResponse`, `TrainResponse`, `StatusResponse` (13 testes passando) |
+| T-004 | `GET /status` implementado em `main.py` com CORS e estrutura base do app (6 testes passando) |
 
 ### Pendentes (próxima execução)
 
 | Task | Descrição |
 |------|-----------|
-| T-004 | Implementar `GET /status` em `main.py` |
 | T-005 | Implementar `POST /train` em `main.py` |
 | T-006 | Implementar `POST /predict` em `main.py` |
 | T-007 | Configurar CORS e testar todos os endpoints |
@@ -166,3 +166,5 @@ Siga `SPRINT-001.md` e marque cada task como `[x]` ao concluir.
 - **`.gitignore` criado na raiz** — o SPEC indica que `artifacts/` é gitignored, mas não especificava onde ou como configurar o arquivo. Optou-se por criar na raiz com escopo `backend/artifacts/*.joblib`, `__pycache__/` e `*.pyc`.
 - **`Field(...)` com descriptions em `schemas.py`** — o SPEC define apenas os tipos; optou-se por adicionar `Field` com `description` em português para melhorar a documentação automática do Swagger gerado pelo FastAPI.
 - **`metrics: dict | None` com `default=None`** — `TrainResponse` e `StatusResponse` usam `Field(None, ...)` para tornar `metrics` opcional por padrão, evitando que o caller precise passar `metrics=None` explicitamente.
+- **`main.py` criado completo na T-004** — o SPEC divide as rotas em T-004/T-005/T-006, mas como `main.py` é um único arquivo de app, foi criado já com os três endpoints para evitar estados intermediários inválidos. Os testes de T-004 cobrem apenas `GET /status`; os de T-005 e T-006 cobrirão seus respectivos endpoints.
+- **`httpx` adicionado como dependência de teste** — `FastAPI.TestClient` exige `httpx` (não declarado no `requirements.txt` original). Instalado separadamente; pode ser adicionado ao `requirements.txt` como `httpx` em dev-dependencies se o projeto crescer.
